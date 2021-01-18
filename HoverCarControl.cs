@@ -69,10 +69,7 @@ public class HoverCarControl : MonoBehaviour
         for (int i = 0; i < m_hoverPoints.Length; i++)
         {
             var hoverPoint = m_hoverPoints[i];
-            if (Physics.Raycast(hoverPoint.transform.position,
-                                -Vector3.up, out hit,
-                                m_hoverHeight,
-                                m_layerMask))
+            if (Physics.Raycast(hoverPoint.transform.position,-Vector3.up, out hit,m_hoverHeight,m_layerMask))
             {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawLine(hoverPoint.transform.position, hit.point);
@@ -81,8 +78,7 @@ public class HoverCarControl : MonoBehaviour
             else
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(hoverPoint.transform.position,
-                               hoverPoint.transform.position - Vector3.up * m_hoverHeight);
+                Gizmos.DrawLine(hoverPoint.transform.position,hoverPoint.transform.position - Vector3.up * m_hoverHeight);
             }
         }
     }

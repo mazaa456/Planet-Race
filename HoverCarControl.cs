@@ -26,16 +26,7 @@ public class HoverCarControl : MonoBehaviour
     public static float turnAxis;
     public static float aclAxis;
     private int ammo;
-    //public GameObject m_leftAirBrake;
-    //public GameObject m_rightAirBrake;
-
     int m_layerMask;
-
-    //AudioSource EngineSound;
-
-    //Rigidbody rb;
-
-    //private float speed;
     private float boostTimer;
     private float hitTimer;
     private float slowTimer;
@@ -180,9 +171,6 @@ public class HoverCarControl : MonoBehaviour
                 slowing = false;
             }
         }
-        /*if (ammo < 100)
-            ammo++;*/
-
         if (hiting)
         {
             hitTimer--;
@@ -207,23 +195,18 @@ public class HoverCarControl : MonoBehaviour
             StartCoroutine(stopspeedBoost());
             changePS.GetComponent<ParticleSystem>().enableEmission = false;
             StartCoroutine(changeps());
-            //Destroy(other.gameObject);
         }
         else if (other.tag == "Slow")
         {
             slowing = true;
             m_forwardAcl = 5000;
-            shockSound.Play();
-            //Destroy(other.gameObject);         
+            shockSound.Play();      
         }
         if (other.gameObject.tag == "Bullet")
         {
             hitTimer = 200;
             hiting = true;
             m_forwardAcl = 00;
-            //Destroy(other.gameObject);
-
-
         }
         if (other.gameObject.tag == "AmmoItem")
         {
@@ -234,7 +217,6 @@ public class HoverCarControl : MonoBehaviour
                 turboImage.enabled = false;
                 ItemCollect.Play();
             }
-            //Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "SpeedItem")
         {
@@ -242,7 +224,6 @@ public class HoverCarControl : MonoBehaviour
             turboImage.enabled = true;
             missileImage.enabled = false;
             ItemCollect.Play();
-            //Destroy(other.gameObject);
         }
         if(other.gameObject.tag == "CPoint")
         {
@@ -279,27 +260,7 @@ public class HoverCarControl : MonoBehaviour
         changePS.GetComponent<ParticleSystem>().enableEmission = true;
     }  
 
-    /*void OnCollisionEnter(Collision m)
-    {
-        if (m.gameObject.tag == "Bullet")
-        {
-            hitTimer = 200;
-            hiting = true;
-            m_forwardAcl = 8000;
-            Destroy(m.gameObject);
 
-
-        }
-    }*/
-    /*private void OnTriggerEnter(Collider other)
-      {
-        if (other.tag == "Finish2")
-          {
-              LapManager2.Lap2++;
-              Debug.Log("Lap2: " + LapManager2.Lap2);
-
-          }
-      }*/
     public void OnMoveHorizon(CallbackContext c)
     {
         turnAxis = c.ReadValue<float>();
